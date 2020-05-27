@@ -1,4 +1,4 @@
 indexer.go
 config.yaml
 output
-./gomeili
+gomeili
