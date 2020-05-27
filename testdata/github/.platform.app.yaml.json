@@ -1,0 +1,18 @@
+{
+  "name": ".platform.app.yaml",
+  "path": "templates/xwiki/files/.platform.app.yaml",
+  "sha": "0d1331223ee464bf7a7484adf1690108c359e5eb",
+  "size": 1465,
+  "url": "https://api.github.com/repos/platformsh/template-builder/contents/templates/xwiki/files/.platform.app.yaml?ref=master",
+  "html_url": "https://github.com/platformsh/template-builder/blob/master/templates/xwiki/files/.platform.app.yaml",
+  "git_url": "https://api.github.com/repos/platformsh/template-builder/git/blobs/0d1331223ee464bf7a7484adf1690108c359e5eb",
+  "download_url": "https://raw.githubusercontent.com/platformsh/template-builder/master/templates/xwiki/files/.platform.app.yaml",
+  "type": "file",
+  "content": "IyBUaGlzIGZpbGUgZGVzY3JpYmVzIGFuIGFwcGxpY2F0aW9uLiBZb3UgY2Fu\nIGhhdmUgbXVsdGlwbGUgYXBwbGljYXRpb25zCiMgaW4gdGhlIHNhbWUgcHJv\namVjdC4KIwojIFNlZSBodHRwczovL2RvY3MucGxhdGZvcm0uc2gvdXNlcl9n\ndWlkZS9yZWZlcmVuY2UvcGxhdGZvcm0tYXBwLXlhbWwuaHRtbAoKIyBUaGUg\nbmFtZSBvZiB0aGlzIGFwcC4gTXVzdCBiZSB1bmlxdWUgd2l0aGluIGEgcHJv\namVjdC4KbmFtZTogYXBwCgojIFRoZSBydW50aW1lIHRoZSBhcHBsaWNhdGlv\nbiB1c2VzLgp0eXBlOiAiamF2YTo4IgoKZGlzazogMjA0OAoKbW91bnRzOgog\nICAgJy9zZXJ2ZXInOgogICAgICAgIHNvdXJjZTogbG9jYWwKICAgICAgICBz\nb3VyY2VfcGF0aDogc2VydmVyX3NvdXJjZQoKcmVsYXRpb25zaGlwczoKICAg\nIGRhdGFiYXNlOiAiZGI6cG9zdGdyZXNxbCIKCiMgVGhlIGhvb2tzIGV4ZWN1\ndGVkIGF0IHZhcmlvdXMgcG9pbnRzIGluIHRoZSBsaWZlY3ljbGUgb2YgdGhl\nIGFwcGxpY2F0aW9uLgpob29rczoKICAgIGJ1aWxkOiB8CiAgICAgICAgIGVj\naG8gIkRvd25sb2FkaW5nIHh3aWtpIgogICAgICAgICB3Z2V0IC1xIGh0dHA6\nLy9uZXh1cy54d2lraS5vcmcvbmV4dXMvY29udGVudC9ncm91cHMvcHVibGlj\nL29yZy94d2lraS9wbGF0Zm9ybS94d2lraS1wbGF0Zm9ybS1kaXN0cmlidXRp\nb24tamV0dHktaHNxbGRiLzExLjEwLjIveHdpa2ktcGxhdGZvcm0tZGlzdHJp\nYnV0aW9uLWpldHR5LWhzcWxkYi0xMS4xMC4yLnppcCAtTyB4d2lraS56aXAK\nICAgICAgICAgZWNobyAiRG93bmxvYWRpbmcgTXlTUUwgY29ubmVjdG9yIgog\nICAgICAgICB3Z2V0IC1xIGh0dHBzOi8vamRiYy5wb3N0Z3Jlc3FsLm9yZy9k\nb3dubG9hZC9wb3N0Z3Jlc3FsLTQyLjIuOS5qYXIgLU8gcG9zdGdyZXNxbC1j\nb25uZWN0b3ItamF2YS5qYXIKICAgICAgICAgZWNobyAidW56aXAgeHdpa2ki\nCiAgICAgICAgIHVuemlwIC1xIHh3aWtpLnppcAogICAgICAgICBtdiB4d2lr\naS1wbGF0Zm9ybS1kaXN0cmlidXRpb24tamV0dHktaHNxbGRiLTExLjEwLjIg\neHdpa2kKICAgICAgICAgY3AgcG9zdGdyZXNxbC1jb25uZWN0b3ItamF2YS5q\nYXIgeHdpa2kvd2ViYXBwcy94d2lraS9XRUItSU5GL2xpYi9wb3N0Z3Jlc3Fs\nLWNvbm5lY3Rvci1qYXZhLmphcgogICAgICAgICBjcCBoaWJlcm5hdGUuY2Zn\nLnhtbCB4d2lraS93ZWJhcHBzL3h3aWtpL1dFQi1JTkYvaGliZXJuYXRlLmNm\nZy54bWwKCiMgVGhlIGNvbmZpZ3VyYXRpb24gb2YgYXBwIHdoZW4gaXQgaXMg\nZXhwb3NlZCB0byB0aGUgd2ViLgojIFRoZSBtZW1vcnkgaXMganVzdCB0byBh\nIHN0YW5kYXJkIHBsYW4uCndlYjoKICAgIGNvbW1hbmRzOgogICAgICAgIHN0\nYXJ0OiB8CiAgICAgICAgICAgY3AgLVIgeHdpa2kgc2VydmVyLwogICAgICAg\nICAgIGV4cG9ydCBKRVRUWV9QT1JUPSRQT1JUICYmIC4vc2VydmVyL3h3aWtp\nL3N0YXJ0X3h3aWtpLnNoCiAgICAgICAgCg==\n",
+  "encoding": "base64",
+  "_links": {
+    "self": "https://api.github.com/repos/platformsh/template-builder/contents/templates/xwiki/files/.platform.app.yaml?ref=master",
+    "git": "https://api.github.com/repos/platformsh/template-builder/git/blobs/0d1331223ee464bf7a7484adf1690108c359e5eb",
+    "html": "https://github.com/platformsh/template-builder/blob/master/templates/xwiki/files/.platform.app.yaml"
+  }
+}
