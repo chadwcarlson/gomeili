@@ -1,7 +1,7 @@
 package index
 
 import (
-  "fmt"
+  // "fmt"
   docs "github.com/chadwcarlson/gomeili/utils/documents"
   "github.com/chadwcarlson/gomeili/discourse"
   "github.com/chadwcarlson/gomeili/utils/config"
@@ -17,11 +17,11 @@ func Build(configs config.ConfigSet) docs.Index {
     }
 
     if config.Type == "openapi" {
-      fmt.Print(config)
+      // fmt.Print(config)
     }
 
     if config.Type == "githubrepo" {
-      fmt.Print(config)
+      // fmt.Print(config)
     }
 
   }
