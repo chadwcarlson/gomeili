@@ -7,19 +7,23 @@ import (
 )
 
 type ConfigSet []struct {
-  Name   string   `yaml:"name"`
-  Type   string   `yaml:"type"`
-  Rank   int      `yaml:"rank"`
-  URL    string   `yaml:"url"`
-  Ignore []string `yaml:"ignore"`
+  Name        string   `yaml:"name"`
+  Type        string   `yaml:"type"`
+  Rank        int      `yaml:"rank"`
+  URL         string   `yaml:"url"`
+  File        string   `yaml:"file"`
+  Destination string   `yaml:"destination"`
+  Ignore      []string `yaml:"ignore"`
 }
 
 type Config struct {
-  Name   string   `yaml:"name"`
-  Type   string   `yaml:"type"`
-  Rank   int      `yaml:"rank"`
-  URL    string   `yaml:"url"`
-  Ignore []string `yaml:"ignore"`
+  Name        string   `yaml:"name"`
+  Type        string   `yaml:"type"`
+  Rank        int      `yaml:"rank"`
+  URL         string   `yaml:"url"`
+  File        string   `yaml:"file"`
+  Destination string   `yaml:"destination"`
+  Ignore      []string `yaml:"ignore"`
 }
 
 func (c *ConfigSet) ParseYAML(data []byte) error {

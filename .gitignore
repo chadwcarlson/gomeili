@@ -2,3 +2,4 @@ indexer.go
 config.yaml
 output
 gomeili
+test.json

@@ -37,12 +37,12 @@ func Get(p config.Config) docs.Index {
 
   // Get the categories.
   var categories comm.DiscourseCategories
-  body := req.RequestData(p.URL, "/categories.json")
+  body := req.RequestData(p.URL, "categories.json")
   json.Unmarshal(body, &categories)
 
   // Parse each category individually.
   var allDocuments docs.Index
-  io.WriteString(os.Stdout, fmt.Sprintf("\n* Discourse site @ %s:\n", p.URL))
+  io.WriteString(os.Stdout, fmt.Sprintf("* \033[1mDiscourse API @\033[0m %s\n", p.URL))
   for _, category := range categories.CategoryList.Categories {
     if !ignore.ItemExists(p.Ignore, category.Name) && category.TopicCount > 0 {
       io.WriteString(os.Stdout, fmt.Sprintf("   - %s (%v topics)\n", category.Name, category.TopicCount))
@@ -68,7 +68,7 @@ func parseCategory(p config.Config, category_data comm.Categories, documentsCate
 
     var document docs.Document
 
-    document.Site = "community"
+    document.Site = p.Name
     document.Section = category_data.Name
     document.Title = topic.Title
 
@@ -81,14 +81,19 @@ func parseCategory(p config.Config, category_data comm.Categories, documentsCate
     h.Write([]byte(fmt.Sprintf(full_url)))
     document.DocumentID = fmt.Sprintf("%x", h.Sum(nil))
 
-    document.Rank = 1
+    document.Rank = p.Rank
 
     var post comm.CommunityPost
     body := req.RequestData(p.URL, rel_url + ".json")
     json.Unmarshal(body, &post)
 
-    document.Text = "Lorem ipsum"
-    document.Subsection = "subsection"
+    // Catch: Testing this on try.discourse.org, sometimes Q&A posts will come back empty.
+    if len(post.PostStream.Posts) > 0 {
+      document.Text = post.PostStream.Posts[0].Cooked
+    } else {
+      document.Text = ""
+    }
+    document.Subsection = ""
 
     documentsCategory.Documents = append(documentsCategory.Documents, document)
 

@@ -1,9 +1,0 @@
-
-
-func Get() {
-
-}
-
-func Write() {
-
-}

@@ -1,6 +1,5 @@
 # gomeili
 
-
 This library supports:
 
 - Retrieving common resources with existing public APIs (i.e. GitHub, Discourse), parsing and reformatting their data into a Meilisearch compatible index
