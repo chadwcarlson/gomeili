@@ -24,6 +24,7 @@ type Document struct {
   RelativeURL string `json:"relurl"`
 }
 
+
 func (d *Index) Write(save_location string) {
 
   data, _ := json.MarshalIndent(d.Documents, "", "    ")
