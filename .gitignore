@@ -8,4 +8,6 @@ testdata
 fullconfig.yaml
 template.yaml
 .env
-test.go
+test_auth.go
+test_registry.go
+notes.md

@@ -5,7 +5,6 @@ type TemplateList struct {
   AllTemplates []TemplateInfo
 }
 
-
 type PlatformTemplateYAML struct {
 	Version int `yaml:"version"`
 	Info    struct {
@@ -45,3 +44,11 @@ type TemplateInfo struct {
 		HTML string `json:"html"`
 	} `json:"_links"`
 }
+
+// type Registry struct {
+//   Images []Image
+// }
+//
+// type Image struct {
+//   Name   string  `json:"name"`
+// }

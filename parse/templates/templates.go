@@ -17,6 +17,16 @@ import (
   "github.com/chadwcarlson/gomeili/parse/templates/structs"
 )
 
+// func getNameFromRuntimeType(runtime string) string {
+//   url := "https://docs.platform.sh/registry/images/"
+//
+//   body := req.RequestData(url, "registry.json")
+//   dynamic := make(map[string]interface{})
+//   json.Unmarshal(body, &dynamic)
+//
+//   return dynamic[runtime].(map[string]interface{})["name"]
+// }
+
 func getTemplate(p config.Config, template structs.TemplateInfo) docs.Document {
 
   var document docs.Document
@@ -62,6 +72,14 @@ func getTemplate(p config.Config, template structs.TemplateInfo) docs.Document {
   document.Image = templateYAML.Info.Image
 
   // Section (i.e. runtime).
+  // get the runtime, used for the hugo object (and  make the hugo object in parallel)
+  // Make request to files (Ideally....)
+  // if .platform.app.yaml:
+  //    parse file for type
+  // elif .platform/applications.yaml:
+  //    parse array for type on each app
+  // else:
+  //    don't include the template at  all
   // document.Section = category_data.Name   RUNTIME
 
   return document
