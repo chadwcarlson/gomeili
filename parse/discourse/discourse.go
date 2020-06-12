@@ -7,6 +7,7 @@ import (
     "os"
     "encoding/json"
     "crypto/sha1"
+    "github.com/schollz/progressbar/v3"
     "github.com/chadwcarlson/gomeili/config"
     "github.com/chadwcarlson/gomeili/utils/ignore"
     req "github.com/chadwcarlson/gomeili/utils/requests"
@@ -23,10 +24,10 @@ func Get(p config.Config) docs.Index {
 
   // Parse each category individually.
   var allDocuments docs.Index
-  io.WriteString(os.Stdout, fmt.Sprintf("* \033[1mDiscourse API @\033[0m %s\n", p.URL))
+  io.WriteString(os.Stdout, fmt.Sprintf("\n\033[1mDiscourse API @\033[0m %s\n", p.URL))
   for _, category := range categories.CategoryList.Categories {
     if !ignore.ItemExists(p.Ignore, category.Name) && category.TopicCount > 0 {
-      io.WriteString(os.Stdout, fmt.Sprintf("   - %s (%v topics)\n", category.Name, category.TopicCount))
+      io.WriteString(os.Stdout, fmt.Sprintf("\033[1m %s\033[0m (%v topics)\n", category.Name, category.TopicCount))
       allDocuments = parseCategory(p, category, allDocuments)
     }
   }
@@ -45,6 +46,7 @@ func parseCategory(p config.Config, category_data comm.Categories, documentsCate
   json.Unmarshal(body, &category)
 
   // Parse each topic individually.
+  bar := progressbar.Default(int64(len(category.TopicList.Topics)))
   for _, topic := range category.TopicList.Topics {
 
     var document docs.Document
@@ -63,6 +65,11 @@ func parseCategory(p config.Config, category_data comm.Categories, documentsCate
     document.DocumentID = fmt.Sprintf("%x", h.Sum(nil))
 
     document.Rank = p.Rank
+    if p.Rank == 1 {
+      document.Source = "primary"
+    } else {
+      document.Source = "secondary"
+    }
 
     var post comm.CommunityPost
     body := req.RequestData(p.URL, rel_url + ".json")
@@ -77,6 +84,8 @@ func parseCategory(p config.Config, category_data comm.Categories, documentsCate
     document.Subsection = ""
 
     documentsCategory.Documents = append(documentsCategory.Documents, document)
+
+    bar.Add(1)
 
   }
 

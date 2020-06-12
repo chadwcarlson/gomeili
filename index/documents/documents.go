@@ -27,7 +27,6 @@ type Document struct {
   RelativeURL string `json:"relurl"`
 }
 
-
 func (d *Index) Write(save_location string) {
 
   data, _ := json.MarshalIndent(d.Documents, "", "    ")
@@ -35,7 +34,7 @@ func (d *Index) Write(save_location string) {
   if err != nil {
       fmt.Println("error:", err)
   } else {
-    io.WriteString(os.Stdout, fmt.Sprintf("   \033[1m>>>\033[0m Index written to: \033[1m%s\033[0m\n", save_location))
+    io.WriteString(os.Stdout, fmt.Sprintf("\033[1m Done.\033[0m Index written to: %s\n", save_location))
   }
 
 }

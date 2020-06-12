@@ -12,7 +12,7 @@ import (
 
 func Get(p config.Config) docs.Index {
 
-  io.WriteString(os.Stdout, fmt.Sprintf("* \033[1mLocal Meilisearch index @\033[0m %s\n", p.File))
+  io.WriteString(os.Stdout, fmt.Sprintf("\n\033[1mLocal Meilisearch index @\033[0m %s\n", p.File))
 
   var allDocuments docs.Index
 

@@ -8,6 +8,7 @@ import (
   docs "github.com/chadwcarlson/gomeili/index/documents"
   "github.com/chadwcarlson/gomeili/parse/openapi"
   "github.com/chadwcarlson/gomeili/parse/discourse"
+  "github.com/chadwcarlson/gomeili/parse/templates"
   "github.com/chadwcarlson/gomeili/index/local"
   "github.com/chadwcarlson/gomeili/index/remote"
   "github.com/chadwcarlson/gomeili/config"
@@ -23,7 +24,7 @@ func writeIndividualIndex(indexConfig config.Config, index docs.Index) {
 // Builds Meilisearch index across a given config file.
 func Build(configs config.ConfigSet, combinedFileLocation string) docs.Index {
 
-  io.WriteString(os.Stdout, "\n\033[1mPreparing Meilisearch index...\033[0m\n\n")
+  io.WriteString(os.Stdout, "\n\033[1mBuilding Meilisearch index...\033[0m\n")
   var allDocuments docs.Index
 
   for _, config := range configs {
@@ -39,8 +40,9 @@ func Build(configs config.ConfigSet, combinedFileLocation string) docs.Index {
       writeIndividualIndex(config, documents)
     }
     // Handle GitHub repo.
-    if config.Type == "githubrepo" {
-      // fmt.Print(config)
+    if config.Type == "templates" {
+      documents = templates.Get(config)
+      writeIndividualIndex(config, documents)
     }
     // Handle pre-existing remote Meilisearch index.
     if config.Type == "remote" {
@@ -57,7 +59,7 @@ func Build(configs config.ConfigSet, combinedFileLocation string) docs.Index {
 
   // Write the combined index file.
   if len(combinedFileLocation) > 0 {
-    io.WriteString(os.Stdout, "* \033[1mWriting Combined index\033[0m\n")
+    io.WriteString(os.Stdout, "\n\033[1mWriting Combined index\033[0m\n")
     allDocuments.Write(combinedFileLocation)
   }
 

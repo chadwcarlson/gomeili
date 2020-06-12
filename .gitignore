@@ -6,3 +6,6 @@ test.json
 githubrepo
 testdata
 fullconfig.yaml
+template.yaml
+.env
+test.go
