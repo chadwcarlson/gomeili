@@ -7,31 +7,12 @@ import (
     "os"
     "encoding/json"
     "crypto/sha1"
-    "github.com/chadwcarlson/gomeili/utils/config"
+    "github.com/chadwcarlson/gomeili/config"
     "github.com/chadwcarlson/gomeili/utils/ignore"
     req "github.com/chadwcarlson/gomeili/utils/requests"
-    docs "github.com/chadwcarlson/gomeili/utils/documents"
-    comm "github.com/chadwcarlson/gomeili/discourse/structs"
+    docs "github.com/chadwcarlson/gomeili/index/documents"
+    comm "github.com/chadwcarlson/gomeili/parse/discourse/structs"
 )
-
-func getDocuments(config config.Config) {
-
-  var allDocuments docs.Index
-
-  // Get the categories.
-  var categories comm.DiscourseCategories
-  body := req.RequestData(config.URL, "/categories.json")
-  json.Unmarshal(body, &categories)
-
-  // Parse each category individually.
-  io.WriteString(os.Stdout, fmt.Sprintf("\n* Discourse site @ %s:\n", config.URL))
-  for _, category := range categories.CategoryList.Categories {
-    if !ignore.ItemExists(config.Ignore, category.Name) && category.TopicCount > 0 {
-      io.WriteString(os.Stdout, fmt.Sprintf("   - %s (%v topics)\n", category.Name, category.TopicCount))
-      allDocuments = parseCategory(config, category, allDocuments)
-    }
-  }
-}
 
 func Get(p config.Config) docs.Index {
 

@@ -1,15 +1,16 @@
 package index
 
 import (
+  "os"
   // "fmt"
-  // "io/ioutil"
+  "io"
   // "encoding/json"
-  docs "github.com/chadwcarlson/gomeili/utils/documents"
-  "github.com/chadwcarlson/gomeili/openapi"
-  "github.com/chadwcarlson/gomeili/discourse"
-  "github.com/chadwcarlson/gomeili/local"
-  "github.com/chadwcarlson/gomeili/remote"
-  "github.com/chadwcarlson/gomeili/utils/config"
+  docs "github.com/chadwcarlson/gomeili/index/documents"
+  "github.com/chadwcarlson/gomeili/parse/openapi"
+  "github.com/chadwcarlson/gomeili/parse/discourse"
+  "github.com/chadwcarlson/gomeili/index/local"
+  "github.com/chadwcarlson/gomeili/index/remote"
+  "github.com/chadwcarlson/gomeili/config"
 )
 
 func writeIndividualIndex(indexConfig config.Config, index docs.Index) {
@@ -20,8 +21,9 @@ func writeIndividualIndex(indexConfig config.Config, index docs.Index) {
 }
 
 // Builds Meilisearch index across a given config file.
-func Build(configs config.ConfigSet) docs.Index {
+func Build(configs config.ConfigSet, combinedFileLocation string) docs.Index {
 
+  io.WriteString(os.Stdout, "\n\033[1mPreparing Meilisearch index...\033[0m\n\n")
   var allDocuments docs.Index
 
   for _, config := range configs {
@@ -53,30 +55,14 @@ func Build(configs config.ConfigSet) docs.Index {
     allDocuments.Documents = append(allDocuments.Documents, documents.Documents...)
   }
 
+  // Write the combined index file.
+  if len(combinedFileLocation) > 0 {
+    io.WriteString(os.Stdout, "* \033[1mWriting Combined index\033[0m\n")
+    allDocuments.Write(combinedFileLocation)
+  }
+
+  io.WriteString(os.Stdout, "\n\033[1mComplete.\033[0m\n\n")
+
   return allDocuments
 
 }
-//
-// func Combine(configs config.ConfigSet, destination string) {
-//   var allDocuments docs.Index
-//   var emptyConfig *config.Config
-//   for _, config := range configs {
-//     if emptyConfig.Destination != config.Destination {
-//       var documents docs.Index
-//       data, err := ioutil.ReadFile(config.Destination)
-//       if err != nil {
-//         fmt.Print(err)
-//       }
-//       err = json.Unmarshal(data, &documents)
-//       if err != nil {
-//           fmt.Println("error:", err)
-//       }
-//       for _, document := range documents.Documents {
-//         allDocuments.Documents = append(allDocuments.Documents, document)
-//       }
-//     }
-//   }
-//
-//   allDocuments.Write(destination)
-//
-// }

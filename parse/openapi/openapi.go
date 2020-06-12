@@ -7,8 +7,8 @@ import (
     "fmt"
     "strings"
     "crypto/sha1"
-    "github.com/chadwcarlson/gomeili/utils/config"
-    docs "github.com/chadwcarlson/gomeili/utils/documents"
+    "github.com/chadwcarlson/gomeili/config"
+    docs "github.com/chadwcarlson/gomeili/index/documents"
     "github.com/getkin/kin-openapi/openapi3"
 )
 

@@ -5,8 +5,8 @@ import (
   "io"
   "os"
   "encoding/json"
-  "github.com/chadwcarlson/gomeili/utils/config"
-  docs "github.com/chadwcarlson/gomeili/utils/documents"
+  "github.com/chadwcarlson/gomeili/config"
+  docs "github.com/chadwcarlson/gomeili/index/documents"
   req "github.com/chadwcarlson/gomeili/utils/requests"
 )
 
@@ -24,6 +24,12 @@ func Get(p config.Config) docs.Index {
 
     allDocuments.Documents[position].Site = p.Name
     allDocuments.Documents[position].Rank = p.Rank
+
+    if p.Rank == 1 {
+      allDocuments.Documents[position].Source = "primary"
+    } else {
+      allDocuments.Documents[position].Source = "secondary"
+    }
 
   }
 

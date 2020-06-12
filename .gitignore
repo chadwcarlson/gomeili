@@ -4,3 +4,5 @@ output
 gomeili
 test.json
 githubrepo
+testdata
+fullconfig.yaml
