@@ -1,5 +1,14 @@
 # gomeili
 
+TODO:
+
+* [ ] Update README
+* [ ] Better comments throughout
+* [ ] Handle additional pages for discourse site (`topic_list.more_topics_url`)
+* [ ] Templates to shortcode format
+* [ ] General refactor
+* [ ] Clean up modules, what is shared public, what is internal. 
+
 ## Sources
 
 ```yaml

@@ -149,7 +149,7 @@ func getTemplate(p config.Config, template structs.TemplateInfo) docs.Document {
   document.Text = templateYAML.Info.Description
 
   // Image.
-  // document.Image = templateYAML.Info.Image
+  document.Image = templateYAML.Info.Image
 
   runtimeSection := getTemplateRuntime(p, template)
   document.Section = runtimeSection
