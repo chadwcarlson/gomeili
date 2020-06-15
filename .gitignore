@@ -3,3 +3,11 @@ config.yaml
 output
 gomeili
 test.json
+githubrepo
+testdata
+fullconfig.yaml
+template.yaml
+.env
+test_auth.go
+test_registry.go
+notes.md

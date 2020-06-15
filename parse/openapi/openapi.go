@@ -7,8 +7,9 @@ import (
     "fmt"
     "strings"
     "crypto/sha1"
-    "github.com/chadwcarlson/gomeili/utils/config"
-    docs "github.com/chadwcarlson/gomeili/utils/documents"
+    "github.com/chadwcarlson/gomeili/config"
+    "github.com/chadwcarlson/gomeili/utils/ignore"
+    docs "github.com/chadwcarlson/gomeili/index/documents"
     "github.com/getkin/kin-openapi/openapi3"
 )
 
@@ -42,6 +43,11 @@ func getDocument(path_string string, p config.Config, operation *openapi3.Operat
   document.DocumentID = fmt.Sprintf("%x", h.Sum(nil))
 
   document.Rank = p.Rank
+  if p.Rank == 1 {
+    document.Source = "primary"
+  } else {
+    document.Source = "secondary"
+  }
 
   document.Text = strings.Replace(operation.Description, "\n", " ",-1)
   document.Description = strings.Replace(operation.Description, "\n", " ",-1)
@@ -51,7 +57,7 @@ func getDocument(path_string string, p config.Config, operation *openapi3.Operat
 }
 
 func getTagDocuments(p config.Config, swagger *openapi3.Swagger, allDocuments docs.Index) docs.Index {
-  io.WriteString(os.Stdout, fmt.Sprintf("   - %s (%v tags)\n", "Tags", len(swagger.Tags)))
+  io.WriteString(os.Stdout, fmt.Sprintf("\033[1m %s\033[0m (%v tags)\n", "Tags", len(swagger.Tags)))
   for _, tag := range swagger.Tags {
 
     var document docs.Document
@@ -84,31 +90,30 @@ func getTagDocuments(p config.Config, swagger *openapi3.Swagger, allDocuments do
 func getPathDocuments(p config.Config, swagger *openapi3.Swagger, allDocuments docs.Index) docs.Index {
 
   var emptyOp *openapi3.Operation
-  io.WriteString(os.Stdout, fmt.Sprintf("   - %s (%v paths)\n", "Paths", len(swagger.Paths)))
+  io.WriteString(os.Stdout, fmt.Sprintf("\033[1m %s\033[0m (%v paths)\n", "Paths", len(swagger.Paths)))
   for key, path := range swagger.Paths {
 
     // GET Operation
     if emptyOp != path.Get {
-      // TODO: Actually use the `ignore attribute`. In .Ignore.
-      if (getTags(path.Get) != "NO_INCLUDE") {
+      if !ignore.ItemExists(p.Ignore, getTags(path.Get)) {
         allDocuments.Documents = append(allDocuments.Documents, getDocument(key, p, path.Get, "get"))
       }
     }
     // POST Operation
     if emptyOp != path.Post {
-      if (getTags(path.Post) != "NO_INCLUDE") {
+      if !ignore.ItemExists(p.Ignore, getTags(path.Post)) {
         allDocuments.Documents = append(allDocuments.Documents, getDocument(key, p, path.Post, "post"))
       }
     }
     // DELETE Operation
     if emptyOp != path.Delete {
-      if (getTags(path.Delete) != "NO_INCLUDE") {
+      if !ignore.ItemExists(p.Ignore, getTags(path.Delete)) {
         allDocuments.Documents = append(allDocuments.Documents, getDocument(key, p, path.Delete, "delete"))
       }
     }
     // PATCH Operation
     if emptyOp != path.Patch {
-      if (getTags(path.Patch) != "NO_INCLUDE") {
+      if !ignore.ItemExists(p.Ignore, getTags(path.Patch)) {
         allDocuments.Documents = append(allDocuments.Documents, getDocument(key, p, path.Patch, "patch"))
       }
     }
@@ -120,7 +125,7 @@ func getPathDocuments(p config.Config, swagger *openapi3.Swagger, allDocuments d
 func Get(p config.Config) docs.Index {
 
   // Load the specification from the given url.
-  io.WriteString(os.Stdout, fmt.Sprintf("* \033[1mOpen API 3.0 specification @\033[0m %s\n", p.URL + p.File))
+  io.WriteString(os.Stdout, fmt.Sprintf("\n\033[1mOpen API 3.0 specification @\033[0m %s\n", p.URL + p.File))
   loader := openapi3.NewSwaggerLoader()
   loader.IsExternalRefsAllowed = true
   url,  err := url.Parse(p.URL + p.File)

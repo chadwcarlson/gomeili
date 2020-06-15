@@ -112,6 +112,7 @@ type Topics struct {
 	Posters            []Posters     `json:"posters"`
 }
 type TopicList struct {
+	MoreTopicsURL  string 		 `json:"more_topics_url"`
 	CanCreateTopic bool        `json:"can_create_topic"`
 	Draft          interface{} `json:"draft"`
 	DraftKey       string      `json:"draft_key"`
