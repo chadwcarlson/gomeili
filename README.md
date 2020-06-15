@@ -7,6 +7,7 @@ TODO:
 * [x] Handle additional pages for discourse site (`topic_list.more_topics_url`)
 * [ ] Templates to shortcode format for accordians/marketplace listing
 * [ ] General refactor
+  * [ ] separate general `parse` utility?
 * [ ] Move self-indexing to marketing site (general, outside this repo)
 * [ ] Make API Docs self-indexing?: *requires local spec support*.
 * [ ] Clean up modules, what is shared public, what is internal.
@@ -15,8 +16,10 @@ TODO:
 * [ ] Remove unicode characters from text.
   * [ ] Apply this  fix to all text fields. `Questions & Answers` section has this too.
 * [ ] Find a better, cleaner way to handle the `Description` field.
-* [ ] `go fmt` everything
+* [x] `go fmt` everything
 * [ ] Judge `config.yaml` field names for obviousness. Rename where appropriate.
+* [ ] Use Meilisearch go wrapper to provide a single executable to projects
+
 
 ## Sources
 

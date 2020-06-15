@@ -1,8 +1,7 @@
 package structs
 
-
 type TemplateList struct {
-  AllTemplates []TemplateInfo
+	AllTemplates []TemplateInfo
 }
 
 type PlatformTemplateYAML struct {
@@ -27,11 +26,11 @@ type PlatformTemplateYAML struct {
 }
 
 type PlatformApplicationsYAML struct {
-  Apps    []PlatformAppYAML
+	Apps []PlatformAppYAML
 }
 
 type PlatformAppYAML struct {
-  Type    string    `json:"type"`
+	Type string `json:"type"`
 }
 
 type TemplateInfo struct {
