@@ -26,6 +26,14 @@ type PlatformTemplateYAML struct {
 	} `yaml:"initialize"`
 }
 
+type PlatformApplicationsYAML struct {
+  Apps    []PlatformAppYAML
+}
+
+type PlatformAppYAML struct {
+  Type    string    `json:"type"`
+}
+
 type TemplateInfo struct {
 	Name        string `json:"name"`
 	Path        string `json:"path"`
@@ -45,10 +53,10 @@ type TemplateInfo struct {
 	} `json:"_links"`
 }
 
-// type Registry struct {
-//   Images []Image
-// }
-//
-// type Image struct {
-//   Name   string  `json:"name"`
-// }
+// https://api.github.com/search/code?q=filename:.platform.app.yaml+repo:platformsh-templates/gatsby-strapi
+type PlatformAppYAMLSearchResults struct {
+	Items []struct {
+		Name string `json:"name"`
+		Path string `json:"path"`
+	} `json:"items"`
+}
