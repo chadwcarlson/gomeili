@@ -4,10 +4,19 @@ TODO:
 
 * [ ] Update README
 * [ ] Better comments throughout
-* [ ] Handle additional pages for discourse site (`topic_list.more_topics_url`)
-* [ ] Templates to shortcode format
+* [x] Handle additional pages for discourse site (`topic_list.more_topics_url`)
+* [ ] Templates to shortcode format for accordians/marketplace listing
 * [ ] General refactor
-* [ ] Clean up modules, what is shared public, what is internal. 
+* [ ] Move self-indexing to marketing site (general, outside this repo)
+* [ ] Make API Docs self-indexing?: *requires local spec support*.
+* [ ] Clean up modules, what is shared public, what is internal.
+* [ ] **TESTS**
+* [ ] Clean up: better variable names (i.e. `p` isn't a good name for a `Config` object).
+* [ ] Remove unicode characters from text.
+  * [ ] Apply this  fix to all text fields. `Questions & Answers` section has this too.
+* [ ] Find a better, cleaner way to handle the `Description` field.
+* [ ] `go fmt` everything
+* [ ] Judge `config.yaml` field names for obviousness. Rename where appropriate.
 
 ## Sources
 
