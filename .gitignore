@@ -12,3 +12,4 @@ test_auth.go
 test_registry.go
 notes.md
 scratch
+betterconfig.yaml

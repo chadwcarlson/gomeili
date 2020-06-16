@@ -28,11 +28,12 @@ type Config struct {
 	Ignore      []string `yaml:"ignore"`
 }
 
-// Parses
+// Parses local `config.yaml` array.
 func (c *ConfigSet) ParseYAML(data []byte) error {
 	return yaml.Unmarshal(data, c)
 }
 
+// Load the local `config.yaml` file.
 func (p ConfigSet) Load(file string) ConfigSet {
 	data, err := ioutil.ReadFile(file)
 	if err != nil {

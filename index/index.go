@@ -2,18 +2,15 @@ package index
 
 import (
 	"os"
-	// "fmt"
 	"io"
-	// "encoding/json"
 	"github.com/chadwcarlson/gomeili/config"
 	docs "github.com/chadwcarlson/gomeili/index/documents"
 	"github.com/chadwcarlson/gomeili/index/local"
 	"github.com/chadwcarlson/gomeili/index/remote"
-	"github.com/chadwcarlson/gomeili/parse/discourse"
-	"github.com/chadwcarlson/gomeili/parse/openapi"
-	"github.com/chadwcarlson/gomeili/parse/templates"
+  "github.com/chadwcarlson/gomeili/parse"
 )
 
+// Writes a `docs.Index` struct to a local file, if `destination` is defined.
 func writeIndividualIndex(indexConfig config.Config, index docs.Index) {
 	var emptyConfig config.Config
 	if emptyConfig.Destination != indexConfig.Destination {
@@ -24,42 +21,35 @@ func writeIndividualIndex(indexConfig config.Config, index docs.Index) {
 // Builds Meilisearch index across a given config file.
 func Build(configs config.ConfigSet, combinedFileLocation string) docs.Index {
 
-	io.WriteString(os.Stdout, "\n\033[1mBuilding Meilisearch index...\033[0m\n")
+  // Combined index.
 	var allDocuments docs.Index
+  io.WriteString(os.Stdout, "\n\033[1mBuilding Meilisearch index...\033[0m\n")
 
+  // Range over the resources listed in `config.yaml`.
 	for _, config := range configs {
+
+    // Individual resource's index.
 		var documents docs.Index
 
-		// Handle Discourse source type.
-		if config.Type == "discourse" {
-			documents = discourse.Get(config)
-			writeIndividualIndex(config, documents)
-		}
-		// Handle OpenAPI 3.0 source type.
-		if config.Type == "openapi" {
-			documents = openapi.Get(config)
-			writeIndividualIndex(config, documents)
-		}
-		// Handle GitHub repo.
-		if config.Type == "templates" {
-			documents = templates.Get(config)
-			writeIndividualIndex(config, documents)
-		}
-		// Handle pre-existing remote Meilisearch index.
-		if config.Type == "remote" {
-			documents = remote.Get(config)
-			writeIndividualIndex(config, documents)
-		}
-		// Handle pre-existing local Meilisearch index file.
-		if config.Type == "local" {
-			documents = local.Get(config)
-			writeIndividualIndex(config, documents)
-		}
+    // Remote, pre-parsed Meilisearch index.
+    if config.Type == "remote" {
+      documents = remote.Get(config)
+    // Local, pre-parsed Meilisearch index (i.e. self-indexed site).
+    } else if config.Type == "local" {
+      documents = local.Get(config)
+    // Resource requires parsing to build its index.
+    } else {
+      documents = parse.Parse(config)
+    }
 
+    // If `destination` is defined for resource, write a local copy.
+    writeIndividualIndex(config, documents)
+
+    // Append the combined index.
 		allDocuments.Documents = append(allDocuments.Documents, documents.Documents...)
 	}
 
-	// Write the combined index file.
+	// Write the combined index to a local file.
 	if len(combinedFileLocation) > 0 {
 		io.WriteString(os.Stdout, "\n\033[1mWriting Combined index\033[0m\n")
 		allDocuments.Write(combinedFileLocation)

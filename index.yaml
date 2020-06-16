@@ -1,0 +1,39 @@
+index:
+  name: "Platform.sh XSS"
+  primaryKey: "documentId"
+attributes:
+  displayed:
+    - "title"
+    - "text"
+    - "url"
+    - "site"
+    - "section"
+  searchable:
+    - "title"
+    - "subsections"
+    - "text"
+    - "section"
+rankingRules:
+    - "asc(rank)"
+    - "attribute"
+    - "typo"
+    - "words"
+    - "proximity"
+    - "attribute"
+    - "wordsPosition"
+    - "exactness"
+synonyms:
+    twoway: true
+    list:
+        - "routes":
+            - "routes.yaml"
+        - "services":
+            - "services.yaml"
+        - "application":
+            - ".platform.app.yaml"
+            - "app.yaml"
+            - "applications.yaml"
+        - "multi-app":
+            - "applications.yaml"
+        - "regions":
+            - "public ip address"

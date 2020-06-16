@@ -10,8 +10,7 @@ import (
 	"time"
 )
 
-// This function performs a generic request from a root url and sub-path,
-// returning its body to be Unmarshaled.
+// Performs a generic request from a root url and sub-path, returning its body to be Unmarshaled.
 func RequestData(url_root string, path string) []byte {
 
 	// Make the request.
@@ -30,8 +29,8 @@ func RequestData(url_root string, path string) []byte {
 
 }
 
-// This function performs an authenticated request from a root url and sub-path,
-// returning its body to be Unmarshaled.
+// Performs an authenticated request from a root url and sub-path, returning its body to be Unmarshaled.
+// 		Requires an environment variable string is passed (set to relevant auth token.)
 func RequestDataAuth(url_root string, path string, authVar string) []byte {
 
 	// Use dotenv when locally testing.
@@ -65,5 +64,4 @@ func RequestDataAuth(url_root string, path string, authVar string) []byte {
 		log.Fatal("Error reading body. ", err)
 	}
 	return body
-
 }

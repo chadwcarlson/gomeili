@@ -4,10 +4,22 @@ import (
 	"time"
 )
 
-// All Categories
+// All Categories (/categories.json).
 type DiscourseCategories struct {
 	CategoryList CategoryList `json:"category_list"`
 }
+
+// Categories data (/categories.json).
+type CategoryList struct {
+	CanCreateCategory bool         `json:"can_create_category"`
+	CanCreateTopic    bool         `json:"can_create_topic"`
+	Draft             interface{}  `json:"draft"`
+	DraftKey          string       `json:"draft_key"`
+	DraftSequence     interface{}  `json:"draft_sequence"`
+	Categories        []Categories `json:"categories"`
+}
+
+// Data for a single category (/categories.json).
 type Categories struct {
 	ID                           int         `json:"id"`
 	Name                         string      `json:"name"`
@@ -43,40 +55,24 @@ type Categories struct {
 	UploadedLogo                 interface{} `json:"uploaded_logo"`
 	UploadedBackground           interface{} `json:"uploaded_background"`
 }
-type CategoryList struct {
-	CanCreateCategory bool         `json:"can_create_category"`
-	CanCreateTopic    bool         `json:"can_create_topic"`
-	Draft             interface{}  `json:"draft"`
-	DraftKey          string       `json:"draft_key"`
-	DraftSequence     interface{}  `json:"draft_sequence"`
-	Categories        []Categories `json:"categories"`
-}
 
-// Single Category
+// Single Category endpoint data (i.e. /c/how-to.json).
 type CommunityCategory struct {
-	Users         []Users         `json:"users"`
-	PrimaryGroups []PrimaryGroups `json:"primary_groups"`
 	TopicList     TopicList       `json:"topic_list"`
 }
-type Users struct {
-	ID             int    `json:"id"`
-	Username       string `json:"username"`
-	Name           string `json:"name"`
-	AvatarTemplate string `json:"avatar_template"`
+
+// Topics data for a single category (i.e. /c/how-to.json).
+type TopicList struct {
+	MoreTopicsURL  string      `json:"more_topics_url"`
+	CanCreateTopic bool        `json:"can_create_topic"`
+	Draft          interface{} `json:"draft"`
+	DraftKey       string      `json:"draft_key"`
+	DraftSequence  interface{} `json:"draft_sequence"`
+	PerPage        int         `json:"per_page"`
+	Topics         []Topics    `json:"topics"`
 }
-type PrimaryGroups struct {
-	ID           int    `json:"id"`
-	Name         string `json:"name"`
-	FlairURL     string `json:"flair_url"`
-	FlairBgColor string `json:"flair_bg_color"`
-	FlairColor   string `json:"flair_color"`
-}
-type Posters struct {
-	Extras         string `json:"extras"`
-	Description    string `json:"description"`
-	UserID         int    `json:"user_id"`
-	PrimaryGroupID int    `json:"primary_group_id"`
-}
+
+// Topic for a category (i.e. /c/how-to.json).
 type Topics struct {
 	ID                 int           `json:"id"`
 	Title              string        `json:"title"`
@@ -107,20 +103,10 @@ type Topics struct {
 	CategoryID         int           `json:"category_id"`
 	PinnedGlobally     bool          `json:"pinned_globally"`
 	FeaturedLink       interface{}   `json:"featured_link"`
-	Posters            []Posters     `json:"posters"`
-}
-type TopicList struct {
-	MoreTopicsURL  string      `json:"more_topics_url"`
-	CanCreateTopic bool        `json:"can_create_topic"`
-	Draft          interface{} `json:"draft"`
-	DraftKey       string      `json:"draft_key"`
-	DraftSequence  interface{} `json:"draft_sequence"`
-	PerPage        int         `json:"per_page"`
-	Topics         []Topics    `json:"topics"`
 }
 
-// Single Post
 
+// Data from an individual post (i.e. /c/how-to/some-slug/<REVISION#>.json).
 type CommunityPost struct {
 	PostStream struct {
 		Posts []struct {

@@ -1,9 +1,31 @@
 package structs
 
+// List of templates via GitHub API @ template-builder/templates.
 type TemplateList struct {
 	AllTemplates []TemplateInfo
 }
 
+// Individual template directories @ template-builder/templates.
+type TemplateInfo struct {
+	Name        string `json:"name"`
+	Path        string `json:"path"`
+	Sha         string `json:"sha"`
+	Size        int    `json:"size"`
+	URL         string `json:"url"`
+	HTMLURL     string `json:"html_url"`
+	GitURL      string `json:"git_url"`
+	DownloadURL string `json:"download_url"`
+	Type        string `json:"type"`
+	Content     string `json:"content"`
+	Encoding    string `json:"encoding"`
+	Links       struct {
+		Self string `json:"self"`
+		Git  string `json:"git"`
+		HTML string `json:"html"`
+	} `json:"_links"`
+}
+
+// .platform.template.yaml data.
 type PlatformTemplateYAML struct {
 	Version int `yaml:"version"`
 	Info    struct {
@@ -25,34 +47,17 @@ type PlatformTemplateYAML struct {
 	} `yaml:"initialize"`
 }
 
+// .platform/applications.yaml
 type PlatformApplicationsYAML struct {
 	Apps []PlatformAppYAML
 }
 
+// .platform.app.yaml
 type PlatformAppYAML struct {
 	Type string `json:"type"`
 }
 
-type TemplateInfo struct {
-	Name        string `json:"name"`
-	Path        string `json:"path"`
-	Sha         string `json:"sha"`
-	Size        int    `json:"size"`
-	URL         string `json:"url"`
-	HTMLURL     string `json:"html_url"`
-	GitURL      string `json:"git_url"`
-	DownloadURL string `json:"download_url"`
-	Type        string `json:"type"`
-	Content     string `json:"content"`
-	Encoding    string `json:"encoding"`
-	Links       struct {
-		Self string `json:"self"`
-		Git  string `json:"git"`
-		HTML string `json:"html"`
-	} `json:"_links"`
-}
-
-// https://api.github.com/search/code?q=filename:.platform.app.yaml+repo:platformsh-templates/gatsby-strapi
+// .platform.app.yaml search results for repository for handling multi-app cases.
 type PlatformAppYAMLSearchResults struct {
 	Items []struct {
 		Name string `json:"name"`

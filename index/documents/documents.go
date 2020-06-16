@@ -8,10 +8,7 @@ import (
 	"os"
 )
 
-type Index struct {
-	Documents []Document
-}
-
+// Single Meilisearch Document schema.
 type Document struct {
 	Site        string `json:"site"`
 	Source      string `json:"source"`
@@ -27,6 +24,12 @@ type Document struct {
 	RelativeURL string `json:"relurl"`
 }
 
+// Meilisearch index of Documents.
+type Index struct {
+	Documents []Document
+}
+
+// Write an index to a local file.
 func (d *Index) Write(save_location string) {
 
 	data, _ := json.MarshalIndent(d.Documents, "", "    ")
