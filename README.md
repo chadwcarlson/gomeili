@@ -2,12 +2,39 @@
 
 TODO:
 
+* [x] Handle additional pages for discourse site (`topic_list.more_topics_url`)
+* [x] `go fmt` everything
 * [ ] Update README
 * [ ] Better comments throughout
-* [ ] Handle additional pages for discourse site (`topic_list.more_topics_url`)
-* [ ] Templates to shortcode format
+* [ ] Templates to shortcode format for accordians/marketplace listing
 * [ ] General refactor
-* [ ] Clean up modules, what is shared public, what is internal. 
+  * [ ] separate general `parse` utility?
+* [ ] Move self-indexing to marketing site (general, outside this repo)
+* [ ] Allow API Docs self-indexing?:
+  * [ ] Add local spec support to `openapi`.
+* [ ] Clean up modules, what is shared public, what is internal.
+* [ ] **TESTS**
+* [ ] Clean up: better variable names (i.e. `p` isn't a good name for a `Config` object).
+* [ ] Remove unicode characters from text.
+  * [ ] Apply this  fix to all text fields. `Questions & Answers` section has this too.
+* [ ] Find a better, cleaner way to handle the `Description` field.
+* [ ] Judge `config.yaml` field names for obviousness. Rename where appropriate.
+* [ ] Use Meilisearch go wrapper to provide a single executable to projects (i.e. fully replace `main.py`)
+  * [ ] define host (local v. Platform)
+  * [ ] set primary key
+  * [ ] set index index name
+  * [ ] displayed  attributes (central)
+  * [ ] searchable attributes (central)
+  * [ ] synonyms (central)
+  * [ ] ranking rules (central)
+  * [ ] master key check
+  * [ ] Create the client
+  * [ ] delete old indices
+  * [ ] create index
+  * [ ] update  synonyms
+  * [ ] update settings
+  * [ ] add documents
+
 
 ## Sources
 
