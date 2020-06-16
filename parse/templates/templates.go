@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	stringFormat "github.com/chadwcarlson/gomeili/utils/string"
 	"github.com/chadwcarlson/gomeili/config"
 	docs "github.com/chadwcarlson/gomeili/index/documents"
 	"github.com/chadwcarlson/gomeili/parse/templates/structs"
@@ -80,10 +81,10 @@ func getTemplate(p config.Config, template structs.TemplateInfo) docs.Document {
 	}
 
 	// Text.
-	document.Text = templateYAML.Info.Description
+	document.Text = stringFormat.Clean(templateYAML.Info.Description)
 
 	// Description.
-	document.Description = templateYAML.Info.Description
+	document.Description = stringFormat.Clean(templateYAML.Info.Description)
 
 	// Image.
 	document.Image = templateYAML.Info.Image

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/chadwcarlson/gomeili/config"
+	"github.com/chadwcarlson/gomeili/utils/string"
 	docs "github.com/chadwcarlson/gomeili/index/documents"
 	comm "github.com/chadwcarlson/gomeili/parse/discourse/structs"
 	"github.com/chadwcarlson/gomeili/utils/ignore"
@@ -104,8 +105,9 @@ func parseTopicsPage(p config.Config, category comm.CommunityCategory, category_
 		// 		I haven't seen the same bug on Community, but this will at least handle that case
 		// 		if it does.
 		if len(post.PostStream.Posts) > 0 {
-			document.Text = post.PostStream.Posts[0].Cooked
-			document.Description = post.PostStream.Posts[0].Cooked
+			// document.Text = post.PostStream.Posts[0].Cooked
+			document.Text = string.Clean(post.PostStream.Posts[0].Cooked)
+			document.Description = string.Clean(post.PostStream.Posts[0].Cooked)
 		} else {
 			document.Text = ""
 			document.Description = ""
