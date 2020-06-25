@@ -78,7 +78,7 @@ func parseTopicsPage(p config.Config, category comm.CommunityCategory, category_
 		document.Subsection = category_data.Name
 
 		// URLs.
-		rel_url := fmt.Sprintf("/t/%s/%d", topic.Slug, topic.ID)
+		rel_url := fmt.Sprintf("t/%s/%d", topic.Slug, topic.ID)
 		full_url := fmt.Sprintf("%s%s", p.URL, rel_url)
 		document.URL = full_url
 		document.RelativeURL = rel_url

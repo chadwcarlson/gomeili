@@ -13,9 +13,11 @@ type Config struct {
     UID        string `yaml:"uid"`
 	} `yaml:"index"`
 	Attributes struct {
+    Distinct  string    `yaml:"distinct"`
 		Displayed  []string `yaml:"displayed"`
 		Searchable []string `yaml:"searchable"`
 	} `yaml:"attributes"`
+  StopWords []string `yaml:"stopWords"`
 	RankingRules []string `yaml:"rankingRules"`
   Synonyms     map[string][]string `yaml:synonyms`
 }
