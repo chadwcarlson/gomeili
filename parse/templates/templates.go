@@ -90,7 +90,8 @@ func getTemplate(p config.Config, template structs.TemplateInfo) docs.Document {
 	document.Image = templateYAML.Info.Image
 
 	// Retrieve the runtime used to use as section for the result.
-	runtimeSection := getTemplateRuntime(p, template)
+	runtimeSection := fmt.Sprintf("Templates | %s", getTemplateRuntime(p, template))
+
 	document.Section = runtimeSection
 	document.Subsection = runtimeSection
 

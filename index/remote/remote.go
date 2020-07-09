@@ -32,9 +32,7 @@ func Get(p config.Config) docs.Index {
 		} else {
 			allDocuments.Documents[position].Source = "secondary"
 		}
-
 	}
-
 	return allDocuments
 
 }

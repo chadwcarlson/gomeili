@@ -23,7 +23,7 @@ func Build(configs config.ConfigSet, combinedFileLocation string) docs.Index {
 
   // Combined index.
 	var allDocuments docs.Index
-  io.WriteString(os.Stdout, "\n\033[1mBuilding Meilisearch index...\033[0m\n")
+  io.WriteString(os.Stdout, "\n\033[1mCollecting documents for Meilisearch...\033[0m\n")
 
   // Range over the resources listed in `config.yaml`.
 	for _, config := range configs {
@@ -54,8 +54,6 @@ func Build(configs config.ConfigSet, combinedFileLocation string) docs.Index {
 		io.WriteString(os.Stdout, "\n\033[1mWriting Combined index\033[0m\n")
 		allDocuments.Write(combinedFileLocation)
 	}
-
-	io.WriteString(os.Stdout, "\n\033[1mComplete.\033[0m\n\n")
 
 	return allDocuments
 
