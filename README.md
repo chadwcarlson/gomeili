@@ -1,6 +1,26 @@
 # gomeili
 
-TODO:
+## Structure
+
+```
+config/         # Used to handle `index.yaml` configuration. Probably should be within `index` namespace instead of separate.
+index/          # handling indexes/documents post-parse
+  documents/      # document struct, word limit check, write/read to/from file
+  local/          # local sources already in Meili format
+  remote/         # remoute index sources already in Meili format
+parse/          # Parsing API sources into Meili format.
+  discourse/      # Parse from Discourse API.
+  openapi/        # Parse from Api Docs, help from `github.com/getkin/kin-openapi/openapi3`.
+  templates/      # Parse from GitHub API from template-builder.
+server/         # For actually posting to the Meilisearch server.
+  config/         # Updating Meilisearch server's config.
+utils/          # Misc utilities.
+  ignore/         # Leveraged to ignore certain tags/categories/sections during parsing.
+  requests/       # Authenticated & unauthenticated requests to APIs.
+  string/         # String cleanup utilities.
+```
+
+## Todo
 
 * [x] Handle additional pages for discourse site (`topic_list.more_topics_url`)
 * [x] `go fmt` everything
@@ -19,22 +39,6 @@ TODO:
   * [ ] Apply this  fix to all text fields. `Questions & Answers` section has this too.
 * [ ] Find a better, cleaner way to handle the `Description` field.
 * [ ] Judge `config.yaml` field names for obviousness. Rename where appropriate.
-* [ ] Use Meilisearch go wrapper to provide a single executable to projects (i.e. fully replace `main.py`)
-  * [ ] define host (local v. Platform)
-  * [ ] set primary key
-  * [ ] set index index name
-  * [ ] displayed  attributes (central)
-  * [ ] searchable attributes (central)
-  * [ ] synonyms (central)
-  * [ ] ranking rules (central)
-  * [ ] master key check
-  * [ ] Create the client
-  * [ ] delete old indices
-  * [ ] create index
-  * [ ] update  synonyms
-  * [ ] update settings
-  * [ ] add documents
-
 
 ## Sources
 
